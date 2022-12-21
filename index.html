@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<p>Welcome to Penguin Game. <img src="images/penguin.png"> Your object is to remove all penguins by clicking on them. Good Luck<br>
+Choose a difficulty level and start.<br>
+If you are bored to click on penguins, click stop and start again.
+</p>
+
+<select id="selectid">
+    <option value="1500">Slow</option>
+    <option value="1000">Normal</option>
+    <option value="500">Fast</option>
+</select>
+
+<button onclick="start()">Start Game</button>
+<button onclick="stopfunction()">Stop</button>
+<button onclick="removeall()">Remove All Penguins</button>
+
+<div id="gamearea"></div>
+
+
+    
+</body>
+
+<script>
+
+function game() {
+
+const speed = document.getElementById("selectid").value;
+const penguin = document.createElement("img");
+document.getElementById("gamearea").appendChild(penguin);
+penguin.src = "images/penguin.png";
+const randomtop = Math.floor(Math.random() * 350 );
+const randomleft = Math.floor(Math.random() * 900 );
+
+penguin.style.position = "absolute";
+penguin.style.top = randomtop+"px";
+penguin.style.left = randomleft+"px";
+
+penguin.addEventListener("click", function() {
+penguin.remove();
+})
+
+
+}
+
+function stopfunction() {
+    clearInterval(rungame);
+}
+
+function start() {
+    const speed = document.getElementById("selectid").value;
+    rungame = setInterval(game, speed);
+}
+
+function removeall() {
+    document.getElementById("gamearea").innerHTML = "";
+    
+    }
+</script>
+</html>
